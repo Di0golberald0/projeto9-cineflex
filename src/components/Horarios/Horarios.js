@@ -4,15 +4,15 @@ import styled from "styled-components";
 export default function Horarios() {
   return (
     <>
-      <Instructions>Selecione o horário</Instructions>
-      <Sessions>
+      <Instrucoes>Selecione o horário</Instrucoes>
+      <Sessoes>
         <Sessao />
-      </Sessions>
+      </Sessoes>
     </>
   );
 }
 
-const Instructions = styled.div`
+const Instrucoes = styled.div`
   margin-top: 70px;
   height: 110px;
   display: flex;
@@ -27,7 +27,7 @@ const Instructions = styled.div`
   color: #293845;
 `;
 
-const Sessions = styled.div`
+const Sessoes = styled.div`
   height: 100vh;
   display: flex;
   flex-direction: column;

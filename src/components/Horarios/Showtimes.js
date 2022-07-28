@@ -3,17 +3,22 @@ import styled from "styled-components";
 
 export default function Showtimes({ showtimes }) {
   return (
-    <Times>
+    <Horarios>
       {showtimes.map((item) => (
-        <Link to={`/sessao/${item.id}`}>
-          <Time>{item.name}</Time>
+        <Link key ={item.id} to={`/sessao/${item.id}`}>
+          <Horario>{item.name}</Horario>
         </Link>
       ))}
-    </Times>
+    </Horarios>
   );
 }
 
-const Time = styled.div`
+const Horarios = styled.div`
+  margin: 20px 0px 0px 14px;
+  display: flex;
+`;
+
+const Horario = styled.div`
   margin-left: 10px;
   width: 83px;
   height: 43px;
@@ -28,9 +33,4 @@ const Time = styled.div`
   justify-content: center;
   letter-spacing: 0.02em;
   color: #ffffff;
-`;
-
-const Times = styled.div`
-  margin: 20px 0px 0px 14px;
-  display: flex;
 `;

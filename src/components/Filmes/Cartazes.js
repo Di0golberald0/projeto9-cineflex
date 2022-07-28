@@ -19,7 +19,7 @@ export default function Cartazes() {
   return (
     <>
       {films.map((item) => (
-        <Link to={`/filme/${item.id}`}>
+        <Link key ={item.id} to={`/filme/${item.id}`}>
           <Cartaz>
             <img src={item.posterURL} alt="cartaz do filme" />
           </Cartaz>

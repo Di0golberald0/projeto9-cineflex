@@ -1,13 +1,13 @@
-import { useState, useEffect } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useState, useEffect, Fragment } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 import Showtimes from "./Showtimes";
 
 export default function Sessao() {
   const { idHorarios } = useParams();
-  const [sessions, setSessions] = useState([]);
-  const [days, setDays] = useState([]);
+  const [sessoes, setSessoes] = useState([]);
+  const [dias, setDias] = useState([]);
 
   useEffect(() => {
     const requisicao = axios.get(
@@ -15,32 +15,32 @@ export default function Sessao() {
     );
 
     requisicao.then((resposta) => {
-      setSessions(resposta.data);
-      setDays(resposta.data.days);
+      setSessoes(resposta.data);
+      setDias(resposta.data.days);
     });
   }, []);
 
   return (
     <>
-      {days.map((item) => (
-        <>
-          <Date>
+      {dias.map((item) => (
+        <Fragment key ={item.id}>
+          <Data>
             {item.weekday} - {item.date}
-          </Date>
+          </Data>
           <Showtimes showtimes={item.showtimes} />
-        </>
+        </Fragment>
       ))}
       <Bottom>
         <Cartaz>
-          <img src={sessions.posterURL} alt="cartaz do filme" />
+          <img src={sessoes.posterURL} alt="cartaz do filme" />
         </Cartaz>
-        <p>{sessions.title}</p>
+        <p>{sessoes.title}</p>
       </Bottom>
     </>
   );
 }
 
-const Date = styled.div`
+const Data = styled.div`
   margin: 24px 0px 0px 24px;
   width: 240px;
   height: 35px;
