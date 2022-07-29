@@ -5,11 +5,12 @@ import styled from "styled-components";
 import Seat from "./Seat";
 
 export default function Assentos({ nome, setNome, CPF, setCPF }) {
-  const { idAssentos } = useParams();
+  const { idSessao } = useParams();
   const [info, setInfo] = useState([]);
   const [ids, setIds] = useState([]);
 
-  function Finalizar() {
+  function Finalizar(event) {
+		event.preventDefault();
     const envio = axios.post(
       "https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
       {
@@ -22,14 +23,14 @@ export default function Assentos({ nome, setNome, CPF, setCPF }) {
 
   useEffect(() => {
     const requisicao = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idAssentos}/seats`
+      `https://mock-api.driven.com.br/api/v5/cineflex/showtimes/${idSessao}/seats`
     );
 
     requisicao.then((resposta) => {
       setInfo(resposta.data);
     });
 
-    requisicao.catch(console.log("falha ao carregar assentos"));
+    requisicao.catch(console.log("Falha ao carregar assentos, tentando novamente"));
   }, []);
 
   return (
@@ -44,7 +45,7 @@ export default function Assentos({ nome, setNome, CPF, setCPF }) {
                   ? info.seats.map((item) => (
                       <Seat item={item} ids={ids} setIds={setIds} />
                     ))
-                  : "carregando"}
+                  : "Carregando"}
               </Seats>
             </ScreenSeats>
             <Legenda>
@@ -93,14 +94,14 @@ export default function Assentos({ nome, setNome, CPF, setCPF }) {
               {info.movie !== undefined ? (
                 <img src={info.movie.posterURL} alt="cartaz do filme" />
               ) : (
-                "carregando"
+                "Carregando"
               )}
             </Cartaz>
             <Descricao>
               {info.movie !== undefined ? (
                 <p>{info.movie.title}</p>
               ) : (
-                "carregando"
+                "Carregando"
               )}
 
               {info.day !== undefined ? (
@@ -108,7 +109,7 @@ export default function Assentos({ nome, setNome, CPF, setCPF }) {
                   {info.day.weekday} - {info.name}
                 </p>
               ) : (
-                "carregando"
+                "Carregando"
               )}
             </Descricao>
           </Bottom>

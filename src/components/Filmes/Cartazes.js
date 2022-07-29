@@ -4,7 +4,7 @@ import axios from "axios";
 import styled from "styled-components";
 
 export default function Cartazes() {
-  const [films, setFilms] = useState([]);
+  const [filmes, setFilmes] = useState([]);
 
   useEffect(() => {
     const requisicao = axios.get(
@@ -12,16 +12,16 @@ export default function Cartazes() {
     );
 
     requisicao.then((resposta) => {
-      setFilms(resposta.data);
+      setFilmes(resposta.data);
     });
 
-    requisicao.catch(console.log("falha ao carregar filmes"));
+    requisicao.catch(console.log("Falha ao carregar lista de filmes, tentando novamente"));
   }, []);
 
   return (
     <>
-      {films.map((item) => (
-        <Link key ={item.id} to={`/filme/${item.id}`}>
+      {filmes.map((item) => (
+        <Link key ={item.id} to={`/sessoes/${item.id}`}>
           <Cartaz>
             <img src={item.posterURL} alt="cartaz do filme" />
           </Cartaz>

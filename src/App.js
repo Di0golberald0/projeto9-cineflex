@@ -15,9 +15,9 @@ export default function App() {
       <Topo />
       <Routes>
         <Route path="/" element={<Filmes />} />
-        <Route path="/filme/:idHorarios" element={<Horarios />} />
+        <Route path="/sessoes/:idFilme" element={<Horarios />} />
         <Route
-          path="/sessao/:idAssentos"
+          path="/assentos/:idSessao"
           element={
             <Assentos nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} />
           }

@@ -5,7 +5,7 @@ export default function Showtimes({ showtimes }) {
   return (
     <Horarios>
       {showtimes.map((item) => (
-        <Link key ={item.id} to={`/sessao/${item.id}`}>
+        <Link key={item.id} to={`/assentos/${item.id}`}>
           <Horario>{item.name}</Horario>
         </Link>
       ))}

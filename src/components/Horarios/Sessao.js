@@ -5,13 +5,13 @@ import styled from "styled-components";
 import Showtimes from "./Showtimes";
 
 export default function Sessao() {
-  const { idHorarios } = useParams();
+  const { idFilme } = useParams();
   const [sessoes, setSessoes] = useState([]);
   const [dias, setDias] = useState([]);
 
   useEffect(() => {
     const requisicao = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idHorarios}/showtimes`
+      `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`
     );
 
     requisicao.then((resposta) => {
@@ -19,13 +19,13 @@ export default function Sessao() {
       setDias(resposta.data.days);
     });
 
-    requisicao.catch(console.log("falha ao carregar horarios"));
+    requisicao.catch(console.log("Falha ao carregar lista de horários, tentando novamente"));
   }, []);
 
   return (
     <>
       {dias.map((item) => (
-        <Fragment key ={item.id}>
+        <Fragment key={item.id}>
           <Data>
             {item.weekday} - {item.date}
           </Data>
