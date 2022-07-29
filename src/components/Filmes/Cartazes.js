@@ -14,6 +14,8 @@ export default function Cartazes() {
     requisicao.then((resposta) => {
       setFilms(resposta.data);
     });
+
+    requisicao.catch(console.log("falha ao carregar filmes"));
   }, []);
 
   return (

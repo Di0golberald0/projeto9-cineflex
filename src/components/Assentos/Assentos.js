@@ -27,10 +27,9 @@ export default function Assentos({ nome, setNome, CPF, setCPF }) {
 
     requisicao.then((resposta) => {
       setInfo(resposta.data);
-      console.log("chegamo aqui");
     });
 
-    requisicao.catch(console.log("deu ruim"));
+    requisicao.catch(console.log("falha ao carregar assentos"));
   }, []);
 
   return (

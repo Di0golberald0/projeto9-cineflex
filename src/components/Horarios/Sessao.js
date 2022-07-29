@@ -18,6 +18,8 @@ export default function Sessao() {
       setSessoes(resposta.data);
       setDias(resposta.data.days);
     });
+
+    requisicao.catch(console.log("falha ao carregar horarios"));
   }, []);
 
   return (
