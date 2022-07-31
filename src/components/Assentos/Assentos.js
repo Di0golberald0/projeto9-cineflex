@@ -20,7 +20,6 @@ export default function Assentos({ nome, setNome, CPF, setCPF }) {
     requisicao.then((resposta) => {
       setInfo(resposta.data);
       setAssentos(resposta.data.seats);
-      console.log("Renderizando")
     });
 
     requisicao.catch(console.log("Falha ao carregar lista de assentos, tentando novamente"));
@@ -54,7 +53,7 @@ export default function Assentos({ nome, setNome, CPF, setCPF }) {
         </Legenda>
         <Formulario nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} ids={ids} setIds={setIds} />
       </Corpo>
-      
+
     </>
   );
 }
@@ -101,25 +100,28 @@ const Legenda = styled.div`
 `;
 
 const Container = styled.div`
-  margin: 0px 12px;
+  margin: 0px 6px;
+  width: 70px;
+  height: 42px;
   display: flex;
   flex-direction: column;
   align-items: center;
 
   p {
+    width: 70px;
+    line-height: 16px;
     font-family: "Roboto";
     font-weight: 400;
     font-size: 13px;
-    line-height: 15px;
     display: flex;
     align-items: center;
+    justify-content: center;
     letter-spacing: -0.013em;
     color: #4e5a65;
   }
 `;
 
 const BotaoAssento = styled.div`
-  margin-left: 8px;
   width: 26px;
   height: 26px;
   background: ${(props) =>
