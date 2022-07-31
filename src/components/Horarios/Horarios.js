@@ -1,13 +1,11 @@
-import Sessao from "./Sessao";
+import Sessoes from "./Sessoes";
 import styled from "styled-components";
 
 export default function Horarios() {
   return (
     <>
       <Instrucoes>Selecione o horário</Instrucoes>
-      <Sessoes>
-        <Sessao />
-      </Sessoes>
+      <Sessoes />
     </>
   );
 }
@@ -25,10 +23,4 @@ const Instrucoes = styled.div`
   text-align: center;
   letter-spacing: 0.04em;
   color: #293845;
-`;
-
-const Sessoes = styled.div`
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
 `;
