@@ -11,7 +11,7 @@ export default function Sessao() {
 
   useEffect(() => {
     const requisicao = axios.get(
-      `https://mock-api.driven.com.br/api/v5/cineflex/movies/${idFilme}/showtimes`
+      `https://mock-api.driven.com.br/api/v7/cineflex/movies/${idFilme}/showtimes`
     );
 
     requisicao.then((resposta) => {

@@ -4,15 +4,15 @@ import styled from "styled-components";
 export default function Filmes() {
   return (
     <>
-      <Instructions>Selecione o filme</Instructions>
-      <Movies>
+      <Instrucoes>Selecione o filme</Instrucoes>
+      <DivFilmes>
         <Cartazes />
-      </Movies>
+      </DivFilmes>
     </>
   );
 }
 
-const Instructions = styled.div`
+const Instrucoes = styled.div`
   margin-top: 70px;
   height: 110px;
   display: flex;
@@ -27,7 +27,7 @@ const Instructions = styled.div`
   color: #293845;
 `;
 
-const Movies = styled.div`
+const DivFilmes = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;

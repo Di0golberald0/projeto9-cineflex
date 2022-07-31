@@ -8,7 +8,7 @@ export default function Cartazes() {
 
   useEffect(() => {
     const requisicao = axios.get(
-      "https://mock-api.driven.com.br/api/v5/cineflex/movies"
+      "https://mock-api.driven.com.br/api/v7/cineflex/movies"
     );
 
     requisicao.then((resposta) => {
