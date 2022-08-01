@@ -2,14 +2,14 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function Formulario({ nome, setNome, CPF, setCPF, ids, setIds, resultado, setResultado }) {
+export default function Formulario({ nome, setNome, CPF, setCPF, ids, setIds, cadeiras, setCadeiras, resultado, setResultado }) {
   let navigate = useNavigate();
     
   function Finalizar(event) {
     event.preventDefault();
     if(ids.length !== undefined){
       if(isNaN(Number(nome)) !== false){
-        if(isNaN(Number(CPF)) !== true && CPF.length === 10){
+        if(isNaN(Number(CPF)) !== true && CPF.length === 11){
           const envio = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",
           {
             ids: ids,
@@ -18,14 +18,15 @@ export default function Formulario({ nome, setNome, CPF, setCPF, ids, setIds, re
           });
           const NovoResultado = {
             ...resultado,
-            assentos: ids,
+            assentos: cadeiras,
             nome: nome,
             cpf: CPF
           };
-          envio.then(() => {
+          envio.then((res) => {
             setNome("");
             setCPF("");
             setIds([]);
+            setCadeiras([]);
             setResultado(NovoResultado);
             navigate("../sucesso");
           })

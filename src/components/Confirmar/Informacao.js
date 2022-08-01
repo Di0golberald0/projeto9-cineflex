@@ -6,7 +6,6 @@ export default function Informacao({ resultado, setResultado }) {
     function Resetar() {
       const resultadoApagado = {};
       setResultado(resultadoApagado);
-      console.log(resultado)
     }
     return(
         <Confirm>
@@ -24,7 +23,7 @@ export default function Informacao({ resultado, setResultado }) {
             <Container>
                 <Strong>Comprador</Strong>
                 <Light>Nome: {resultado.nome}</Light>
-                <Light>CPF: {resultado.cpf}</Light>
+                <Light>CPF: {resultado.cpf[0]}{resultado.cpf[1]}{resultado.cpf[2]}.{resultado.cpf[3]}{resultado.cpf[4]}{resultado.cpf[5]}.{resultado.cpf[6]}{resultado.cpf[7]}{resultado.cpf[8]}-{resultado.cpf[9]}{resultado.cpf[10]}</Light>
             </Container>
             <Link to={`/`}>
                 <Enviar>

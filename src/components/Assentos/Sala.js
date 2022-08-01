@@ -11,6 +11,7 @@ export default function Sala({ nome, setNome, CPF, setCPF, ids, setIds, resultad
     const { idSessao } = useParams();
     const [info, setInfo] = useState([]);
     const [assentos, setAssentos] = useState([]);
+    const [cadeiras, setCadeiras] = useState([]);
     const [filme, setFilme] = useState([]);
     const [dia, setDia] = useState([]);
   
@@ -24,7 +25,6 @@ export default function Sala({ nome, setNome, CPF, setCPF, ids, setIds, resultad
         setAssentos(resposta.data.seats);
         setFilme(resposta.data.movie);
         setDia(resposta.data.day);
-        console.log(resultado)
         const NovoResultado = {
           filme: resposta.data.movie.title,
           dia: resposta.data.day.date,
@@ -42,7 +42,7 @@ export default function Sala({ nome, setNome, CPF, setCPF, ids, setIds, resultad
         <Tela>
           <Lista>
             {assentos.map((item, index) => (
-              <ListaAssentos key={index} item={item} info={info} ids={ids} setIds={setIds} />
+              <ListaAssentos key={index} item={item} info={info} ids={ids} setIds={setIds} cadeiras={cadeiras} setCadeiras={setCadeiras} />
               ))
             }
           </Lista>
@@ -50,7 +50,8 @@ export default function Sala({ nome, setNome, CPF, setCPF, ids, setIds, resultad
         <Legenda />
         <Formulario
          nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF}
-         ids={ids} setIds={setIds} resultado={resultado} setResultado={setResultado} />
+         ids={ids} setIds={setIds} cadeiras={cadeiras} setCadeiras={setCadeiras}
+         resultado={resultado} setResultado={setResultado} />
       </Corpo>
       <Bottom info={info} filme={filme} dia={dia} />
     </>
