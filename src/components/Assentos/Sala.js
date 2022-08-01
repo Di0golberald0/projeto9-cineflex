@@ -24,6 +24,7 @@ export default function Sala({ nome, setNome, CPF, setCPF, ids, setIds, resultad
         setAssentos(resposta.data.seats);
         setFilme(resposta.data.movie);
         setDia(resposta.data.day);
+        console.log(resultado)
         const NovoResultado = {
           filme: resposta.data.movie.title,
           dia: resposta.data.day.date,
@@ -47,7 +48,9 @@ export default function Sala({ nome, setNome, CPF, setCPF, ids, setIds, resultad
           </Lista>
         </Tela>
         <Legenda />
-        <Formulario nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} ids={ids} setIds={setIds} resultado={resultado} setResultado={setResultado} />
+        <Formulario
+         nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF}
+         ids={ids} setIds={setIds} resultado={resultado} setResultado={setResultado} />
       </Corpo>
       <Bottom info={info} filme={filme} dia={dia} />
     </>

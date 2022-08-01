@@ -1,13 +1,13 @@
 import Sala from "./Sala";
 import styled from "styled-components";
 
-export default function Assentos({ nome, setNome, CPF, setCPF }) {
+export default function Assentos({ nome, setNome, CPF, setCPF, ids, setIds, resultado, setResultado }) {
 
 
   return (
     <>
       <Instrucoes>Selecione o horário</Instrucoes>
-      <Sala nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} />
+      <Sala nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} ids={ids} setIds={setIds} resultado={resultado} setResultado={setResultado} />
     </>
   );
 }

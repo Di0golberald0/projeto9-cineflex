@@ -1,38 +1,54 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Informacao({ resultado }) {
-    const ingressos = resultado.assentos
+export default function Informacao({ resultado, setResultado }) {
+    const ingressos = resultado.assentos;
+    function Resetar() {
+      const resultadoApagado = {};
+      setResultado(resultadoApagado);
+      console.log(resultado)
+    }
     return(
         <Confirm>
             <Container>
                 <Strong>Filme e sessão</Strong>
-                <Light>${resultado.filme}</Light>
-                <Light>${resultado.dia} ${resultado.sessao}</Light>
+                <Light>{resultado.filme}</Light>
+                <Light>{resultado.dia} {resultado.sessao}</Light>
             </Container>
             <Container>
                 <Strong>Ingressos</Strong>
                 {ingressos.map((item, index) => (
-                     <Light key={index}>Assento ${item}</Light>
+                     <Light key={index}>Assento {item}</Light>
                 ))}
             </Container>
             <Container>
                 <Strong>Comprador</Strong>
-                <Light>Nome: ${resultado.nome}</Light>
-                <Light>CPF: ${resultado.cpf}</Light>
+                <Light>Nome: {resultado.nome}</Light>
+                <Light>CPF: {resultado.cpf}</Light>
             </Container>
             <Link to={`/`}>
                 <Enviar>
-                    <button>Voltar pra Home</button>
+                    <button onClick={Resetar}>Voltar pra Home</button>
                 </Enviar>
             </Link>
         </Confirm>
     )
 }
 
-const Confirm = styled.div``;
+const Confirm = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
-const Container = styled.div``;
+const Container = styled.div`
+  margin-bottom: 50px;
+  width: 330px;
+  @media (max-width: 330px) {
+    width: auto;
+  }
+`;
 
 const Strong = styled.div`
   font-family: "Roboto";
@@ -57,7 +73,6 @@ const Light = styled.div`
 `;
 
 const Enviar = styled.div`
-  margin-top: 38px;
   display: flex;
   align-items: center;
   justify-content: center;

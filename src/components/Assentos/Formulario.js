@@ -2,26 +2,44 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function Formulario({ nome, setNome, CPF, setCPF, ids, resultado, setResultado }) {
+export default function Formulario({ nome, setNome, CPF, setCPF, ids, setIds, resultado, setResultado }) {
   let navigate = useNavigate();
     
   function Finalizar(event) {
     event.preventDefault();
-    if(ids.lenght !== undefined){
-      const envio = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
-      {
-        ids: ids,
-        name: nome,
-        cpf: CPF
-      });
-      const NovoResultado = {
-        ...resultado,
-        assentos: ids,
-        nome: nome,
-        cpf: CPF
-      };
-      setResultado(NovoResultado);
-      navigate("../sucesso");
+    if(ids.length !== undefined){
+      if(isNaN(Number(nome)) !== false){
+        if(isNaN(Number(CPF)) !== true && CPF.length === 10){
+          const envio = axios.post("https://mock-api.driven.com.br/api/v7/cineflex/seats/book-many",
+          {
+            ids: ids,
+            name: nome,
+            cpf: CPF
+          });
+          const NovoResultado = {
+            ...resultado,
+            assentos: ids,
+            nome: nome,
+            cpf: CPF
+          };
+          envio.then(() => {
+            setNome("");
+            setCPF("");
+            setIds([]);
+            setResultado(NovoResultado);
+            navigate("../sucesso");
+          })
+        }
+        else{
+          alert("Por favor, preencher o CPF corretamente");
+        }
+      }
+      else{
+        alert("Por favor, preencher o Nome corretamente");
+      }
+    }
+    else {
+      alert("Por favor, escolher um ou mais assentos para prosseguir");
     }
   }
 
@@ -40,7 +58,7 @@ export default function Formulario({ nome, setNome, CPF, setCPF, ids, resultado,
         <div>
           <p>CPF do comprador:</p>
           <input
-          placeholder="Digite seu nome"
+          placeholder="Digite seu CPF"
           value={CPF}
           onChange={(e) => setCPF(e.target.value)}
           required

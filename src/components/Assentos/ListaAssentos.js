@@ -2,7 +2,7 @@ import { useState } from "react";
 import styled from "styled-components";
 import Cadeira from "./Cadeira";
 
-export default function ListaAssentos({ item, ids, setIds, info }) {
+export default function ListaAssentos({ item, ids, setIds }) {
   const disponivel = item.isAvailable;
   const [selecionado, setSelecionado] = useState(false);
   function Remover(cadeira){
@@ -27,7 +27,9 @@ export default function ListaAssentos({ item, ids, setIds, info }) {
         setIds(novaIds);
       }
     }
-    console.log(info)
+    else{
+      alert("Esse assento não está disponível");
+    }
   }
 
   

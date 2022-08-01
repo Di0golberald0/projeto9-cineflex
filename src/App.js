@@ -27,7 +27,7 @@ export default function App() {
         ids={ids} setIds={setIds} resultado={resultado} setResultado={setResultado} />}
          />
         <Route path="/sucesso" 
-        element={<Confirmar resultado={resultado} />}
+        element={<Confirmar resultado={resultado} setResultado={setResultado} />}
          />
       </Routes>
     </BrowserRouter>
