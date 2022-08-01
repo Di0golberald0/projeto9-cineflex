@@ -1,22 +1,20 @@
 import styled from "styled-components";
 
-export default function Bottom({ info }) {
-  console.log(`info =`);
-  console.log(info);
+export default function Bottom({ info, filme, dia }) {
   return(
-    <DivBottom>
+    <Div>
       <Cartaz>
-        <img src={info.movie.posterURL} alt="cartaz do filme" />
+        <img src={filme.posterURL} alt="cartaz do filme" />
       </Cartaz>
       <Descricao>
-        <p>{info.movie.title}</p>
-        <p>{info.day.weekday} - {info.name}</p>
+        <p>{filme.title}</p>
+        <p>{dia.weekday} - {info.name}</p>
       </Descricao>
-    </DivBottom>
+    </Div>
   )
 }
 
-const DivBottom = styled.div`
+const Div = styled.div`
   position: fixed;
   bottom: 0px;
   left: 0px;

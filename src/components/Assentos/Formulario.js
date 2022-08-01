@@ -1,15 +1,29 @@
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import styled from "styled-components";
 
 export default function Formulario({ nome, setNome, CPF, setCPF, ids }) {
+  let navigate = useNavigate();
     
   function Finalizar(event) {
     event.preventDefault();
-    const envio = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
-    {
-      ids: ids,
-      name: nome,
-      cpf: CPF
-    });
+    console.log(`
+    nome.type=${nome.type};
+    nome=${nome};
+    CPF.type=${CPF.type};
+    CPF=${CPF};
+    ids=${ids};
+    `)
+    if(ids.lenght !== undefined){
+      console.log("Passei")
+      const envio = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
+      {
+        ids: ids,
+        name: nome,
+        cpf: CPF
+      });
+      //navigate("../sucesso");
+    }
   }
 
   return(
@@ -23,8 +37,7 @@ export default function Formulario({ nome, setNome, CPF, setCPF, ids }) {
           onChange={(e) => setNome(e.target.value)}
           required
           />
-        </div>
-                
+        </div>                
         <div>
           <p>CPF do comprador:</p>
           <input
@@ -33,8 +46,7 @@ export default function Formulario({ nome, setNome, CPF, setCPF, ids }) {
           onChange={(e) => setCPF(e.target.value)}
           required
           />
-        </div>
-                
+        </div>        
         <Enviar>
           <button type="submit">Reservar assento(s)</button>
         </Enviar>
