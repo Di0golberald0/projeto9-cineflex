@@ -2,27 +2,26 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import styled from "styled-components";
 
-export default function Formulario({ nome, setNome, CPF, setCPF, ids }) {
+export default function Formulario({ nome, setNome, CPF, setCPF, ids, resultado, setResultado }) {
   let navigate = useNavigate();
     
   function Finalizar(event) {
     event.preventDefault();
-    console.log(`
-    nome.type=${nome.type};
-    nome=${nome};
-    CPF.type=${CPF.type};
-    CPF=${CPF};
-    ids=${ids};
-    `)
     if(ids.lenght !== undefined){
-      console.log("Passei")
       const envio = axios.post("https://mock-api.driven.com.br/api/v5/cineflex/seats/book-many",
       {
         ids: ids,
         name: nome,
         cpf: CPF
       });
-      //navigate("../sucesso");
+      const NovoResultado = {
+        ...resultado,
+        assentos: ids,
+        nome: nome,
+        cpf: CPF
+      };
+      setResultado(NovoResultado);
+      navigate("../sucesso");
     }
   }
 

@@ -7,13 +7,12 @@ import Legenda from "./Legenda";
 import Formulario from "./Formulario";
 import Bottom from "./Bottom";
 
-export default function Sala({ nome, setNome, CPF, setCPF }) {
+export default function Sala({ nome, setNome, CPF, setCPF, ids, setIds, resultado, setResultado }) {
     const { idSessao } = useParams();
     const [info, setInfo] = useState([]);
     const [assentos, setAssentos] = useState([]);
     const [filme, setFilme] = useState([]);
     const [dia, setDia] = useState([]);
-    const [ids, setIds] = useState([]);
   
     useEffect(() => {
       const requisicao = axios.get(
@@ -25,6 +24,12 @@ export default function Sala({ nome, setNome, CPF, setCPF }) {
         setAssentos(resposta.data.seats);
         setFilme(resposta.data.movie);
         setDia(resposta.data.day);
+        const NovoResultado = {
+          filme: resposta.data.movie.title,
+          dia: resposta.data.day.date,
+          sessao: resposta.data.name
+        };
+        setResultado(NovoResultado);
       });
   
       requisicao.catch(console.log("Falha ao carregar lista de assentos, tentando novamente"));
@@ -42,7 +47,7 @@ export default function Sala({ nome, setNome, CPF, setCPF }) {
           </Lista>
         </Tela>
         <Legenda />
-        <Formulario nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} ids={ids} setIds={setIds} />
+        <Formulario nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} ids={ids} setIds={setIds} resultado={resultado} setResultado={setResultado} />
       </Corpo>
       <Bottom info={info} filme={filme} dia={dia} />
     </>

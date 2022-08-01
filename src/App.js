@@ -9,30 +9,26 @@ import Confirmar from "./components/Confirmar/Confirmar";
 export default function App() {
   const [nome, setNome] = useState("");
   const [CPF, setCPF] = useState("");
+  const [ids, setIds] = useState([]);
+  const [resultado, setResultado] = useState({});
 
   return (
     <BrowserRouter>
       <Topo />
       <Routes>
-        <Route path="/" element={<Filmes />} />
-        <Route path="/sessoes/:idFilme" element={<Horarios />} />
-        <Route
-          path="/assentos/:idSessao"
-          element={
-            <Assentos nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} />
-          }
-        />
-        <Route
-          path="/sucesso"
-          element={
-            <Confirmar
-              nome={nome}
-              setNome={setNome}
-              CPF={CPF}
-              setCPF={setCPF}
-            />
-          }
-        />
+        <Route path="/" 
+        element={<Filmes />}
+         />
+        <Route path="/sessoes/:idFilme" 
+        element={<Horarios />}
+         />
+        <Route path="/assentos/:idSessao" 
+        element={<Assentos nome={nome} setNome={setNome} CPF={CPF} setCPF={setCPF} 
+        ids={ids} setIds={setIds} resultado={resultado} setResultado={setResultado} />}
+         />
+        <Route path="/sucesso" 
+        element={<Confirmar resultado={resultado} />}
+         />
       </Routes>
     </BrowserRouter>
   );
